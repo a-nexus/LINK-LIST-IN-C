@@ -174,47 +174,84 @@
 
 //INSERTION AT A SPECIT=FIC PLACE
 
+// #include <stdio.h>
+// #include <stdlib.h>
+// struct Node{
+//     int data;
+//     struct Node* next;
+
+// };
+// struct Node* insertAtLast(struct Node* head){
+//     struct Node* ptr=(struct Node*)malloc(sizeof(struct Node));
+    
+//     struct Node* temp=head;
+    
+//     while(temp->next!=NULL){
+//         temp=temp->next;
+        
+//     }
+//     ptr->data=20;
+//     ptr->next=NULL;
+//     temp->next=ptr;
+//     return head;
+// }
+// void printLL(struct Node* ptr){
+//     while(ptr!=NULL){
+//         printf("%d\t",ptr->data);
+//         ptr=ptr->next;
+
+
+//     }
+
+// }
+// int main(){
+//     struct Node* head=(struct Node*)malloc(sizeof(struct Node));
+//     struct Node* second=(struct Node*)malloc(sizeof(struct Node));
+//     struct Node* third=(struct Node*)malloc(sizeof(struct Node));
+//     head->data=20;
+//     head->next=second;
+//     second->data=30;
+//     second->next=third;
+//     third->data=40;
+//     third->next=NULL;
+//     head=insertAtLast(head);
+//     printLL(head);
+//     return 0;
+// }
+
+//THEN WE WILL TALK ABOUT THE DELETION OKAY BRO 
+
 #include <stdio.h>
 #include <stdlib.h>
 struct Node{
     int data;
     struct Node* next;
-
 };
-struct Node* insertAtLast(struct Node* head){
-    struct Node* ptr=(struct Node*)malloc(sizeof(struct Node));
-    
-    struct Node* temp=head;
-    
-    while(temp->next!=NULL){
-        temp=temp->next;
-        
-    }
-    ptr->data=20;
-    ptr->next=NULL;
-    temp->next=ptr;
+struct Node* deletionAtEnd(struct Node* head){
+    head=head->next;
     return head;
 }
 void printLL(struct Node* ptr){
     while(ptr!=NULL){
         printf("%d\t",ptr->data);
         ptr=ptr->next;
-
-
     }
-
 }
 int main(){
-    struct Node* head=(struct Node*)malloc(sizeof(struct Node));
-    struct Node* second=(struct Node*)malloc(sizeof(struct Node));
-    struct Node* third=(struct Node*)malloc(sizeof(struct Node));
-    head->data=20;
+    struct Node* head;
+    struct Node* second;
+    struct Node* third;
+    head=(struct Node*)malloc(sizeof(struct Node));
+    second=(struct Node*)malloc (sizeof(struct Node));
+    third=(struct Node*)malloc(sizeof(struct Node));
+    head->data=10;
     head->next=second;
-    second->data=30;
+    second->data=20;
     second->next=third;
-    third->data=40;
+    third->data=30;
     third->next=NULL;
-    head=insertAtLast(head);
+   head= deletionAtEnd(head);
     printLL(head);
     return 0;
+
 }
