@@ -221,14 +221,63 @@
 
 //THEN WE WILL TALK ABOUT THE DELETION OKAY BRO 
 
+// #include <stdio.h>
+// #include <stdlib.h>
+// struct Node{
+//     int data;
+//     struct Node* next;
+// };
+// struct Node* deletionAtEnd(struct Node* head){
+//     head=head->next;
+//     return head;
+// }
+// void printLL(struct Node* ptr){
+//     while(ptr!=NULL){
+//         printf("%d\t",ptr->data);
+//         ptr=ptr->next;
+//     }
+// }
+// int main(){
+//     struct Node* head;
+//     struct Node* second;
+//     struct Node* third;
+//     head=(struct Node*)malloc(sizeof(struct Node));
+//     second=(struct Node*)malloc (sizeof(struct Node));
+//     third=(struct Node*)malloc(sizeof(struct Node));
+//     head->data=10;
+//     head->next=second;
+//     second->data=20;
+//     second->next=third;
+//     third->data=30;
+//     third->next=NULL;
+//    head= deletionAtEnd(head);
+//     printLL(head);
+//     return 0;
+
+// }
+
+//DELETION AT A SPECIFIC PLACE
+
 #include <stdio.h>
 #include <stdlib.h>
+
 struct Node{
     int data;
     struct Node* next;
 };
-struct Node* deletionAtEnd(struct Node* head){
-    head=head->next;
+struct Node* atSpecificPlace(struct Node* head,int index){
+    struct Node* temp=head->next;
+    struct Node* prev=head;
+    int i=1;
+    for(i;i<index-1;i++){
+        temp=temp->next;
+        prev=prev->next;
+    }
+
+   
+    prev->next=temp->next;
+    free(temp);
+    
     return head;
 }
 void printLL(struct Node* ptr){
@@ -238,19 +287,19 @@ void printLL(struct Node* ptr){
     }
 }
 int main(){
-    struct Node* head;
-    struct Node* second;
-    struct Node* third;
-    head=(struct Node*)malloc(sizeof(struct Node));
-    second=(struct Node*)malloc (sizeof(struct Node));
-    third=(struct Node*)malloc(sizeof(struct Node));
-    head->data=10;
+    struct Node* head=(struct Node*)malloc(sizeof(struct Node));
+    struct Node* second=(struct Node*)malloc(sizeof(struct Node));
+    struct Node* third=(struct Node*)malloc(sizeof(struct Node));
+    struct Node* fourth=(struct Node*)malloc(sizeof(struct Node));
+    head->data=20;
     head->next=second;
-    second->data=20;
+    second->data=30;
     second->next=third;
-    third->data=30;
-    third->next=NULL;
-   head= deletionAtEnd(head);
+    third->data=40;
+    third ->next=fourth;
+    fourth->data=50;
+    fourth->next=NULL;
+    head = atSpecificPlace(head,3);
     printLL(head);
     return 0;
 
