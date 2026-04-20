@@ -389,6 +389,113 @@
       
 //  }
 
+// #include <stdio.h>
+// #include <stdlib.h>
+
+// struct Node{
+//     int data;
+//     struct Node* next;
+// };
+// struct Node* insertAtBignning(struct Node* head,int value){
+//     struct Node* atBignning=(struct Node*)malloc(sizeof(struct Node));
+//     atBignning->data=value;
+//     atBignning->next=head;
+//     head=atBignning;
+//     return head;
+
+// }
+// void printLL(struct Node* ptr){
+//     while(ptr!=NULL){
+//         printf("%d\t",ptr->data);
+//         ptr=ptr->next;
+//     }
+// }
+// int main(){
+//     struct Node* head=NULL,*temp=NULL,*newNode;
+//     int node;
+//     printf("ENTER THE NUMBER IF NODES:");
+//     scanf("%d",&node);
+//     for(int i=0;i<node;i++){
+//         newNode=(struct Node*)malloc(sizeof(struct Node));
+//         printf("ENTER THE VALUE OF %d NODE:",i+1);
+//         scanf("%d",&newNode->data);
+//         newNode->next=NULL;
+//         if(head==NULL){
+//             head=newNode;
+//             temp=newNode;
+//         }else{
+//             temp->next=newNode;
+//             temp=newNode;
+//         }
+//     }
+//     int val;
+//     printf("ENTER THE VALUE WHICH YOU WANT TO ADD AT THE BIGNNING:");
+//     scanf("%d",&val);
+//     head=insertAtBignning(head,val);
+//     printLL(head);
+// }
+
+
+//INSERTION AT A SPECIFIC PLACE BY THE HELP OF USER INPUT
+
+// #include <stdio.h>
+// #include <stdlib.h>
+
+// struct Node{
+//     int data;
+//     struct Node* next;
+// };
+// struct Node* atSpecific(struct Node* head,int place,int value){
+//     struct Node* newNode=(struct Node*)malloc(sizeof(struct Node));
+//     struct Node* temp=head;
+//     newNode->data=value;
+//     for(int i=1;i<place;i++){
+//         temp=temp->next;
+
+//     }
+// newNode->next=temp->next;
+// temp->next=newNode;
+// return head;
+// }
+// void printLL(struct Node* ptr){
+//     while(ptr!=NULL){
+//         printf("%d\t",ptr->data);
+//         ptr=ptr->next;
+//     }
+
+// }
+// int main(){
+//     struct Node* head=NULL,*temp=NULL,*newNode;
+//     int nodes;
+//     printf("ENTER THE NUMBER OF NODES:");
+//     scanf("%d",&nodes);
+    
+//     for(int i=0;i<nodes;i++){
+//         newNode=(struct Node*)malloc(sizeof(struct Node));
+//         int value;
+//         printf("ENTER THE %d NODE VALUE:",i+1);
+//         scanf("%d",&value);
+//         newNode->data=value;
+//         newNode->next=NULL;
+//         if(head==NULL){
+//             head=newNode;
+//             temp=newNode;
+//         }else{
+//             temp->next=newNode;
+//             temp=newNode;
+//         }
+        
+//     }
+//     int index,val;
+//     printf("ENTER THE INDEX WHERE YOU WANT TO ADD NEW NODE:");
+//     scanf("%d",&index);
+//     printf("ENTER THE VALUE OF THAT NODE:");
+//     scanf("%d",&val);
+//     head=atSpecific(head,index,val);
+//     printLL(head);    
+//     return 0;
+// }
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -396,12 +503,16 @@ struct Node{
     int data;
     struct Node* next;
 };
-struct Node* insertAtBignning(struct Node* head,int value){
-    struct Node* atBignning=(struct Node*)malloc(sizeof(struct Node));
-    atBignning->data=value;
-    atBignning->next=head;
-    head=atBignning;
-    return head;
+struct Node* atEnd(struct Node* head,int nodes){
+    struct Node* temp=head;
+    struct Node* temp2=head->next;
+    for(int i=1;i<nodes-1;i++){
+        temp=temp->next;
+        temp2=temp2->next;
+       }
+       temp->next=NULL;
+       free(temp2);
+       return head;
 
 }
 void printLL(struct Node* ptr){
@@ -412,13 +523,15 @@ void printLL(struct Node* ptr){
 }
 int main(){
     struct Node* head=NULL,*temp=NULL,*newNode;
-    int node;
-    printf("ENTER THE NUMBER IF NODES:");
-    scanf("%d",&node);
-    for(int i=0;i<node;i++){
+    int nodes;
+    printf("ENTER THE NUMBER OF NODES:");
+    scanf("%d",&nodes);
+    for(int i=0;i<nodes;i++){
         newNode=(struct Node*)malloc(sizeof(struct Node));
-        printf("ENTER THE VALUE OF %d NODE:",i+1);
-        scanf("%d",&newNode->data);
+        int value;
+        printf("ENTER THE %d VALUE:",i+1);
+        scanf("%d",&value);
+        newNode->data=value;
         newNode->next=NULL;
         if(head==NULL){
             head=newNode;
@@ -428,9 +541,8 @@ int main(){
             temp=newNode;
         }
     }
-    int val;
-    printf("ENTER THE VALUE WHICH YOU WANT TO ADD AT THE BIGNNING:");
-    scanf("%d",&val);
-    head=insertAtBignning(head,val);
+    head=atEnd(head,nodes);
+        
     printLL(head);
+    return 0;
 }
