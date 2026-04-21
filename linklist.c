@@ -550,29 +550,80 @@
 // SO CIRCULAR LINKLIST
 
 
- #include <stdio.h>
- #include <stdlib.h>
+//  #include <stdio.h>
+//  #include <stdlib.h>
 
- struct Node{
+//  struct Node{
+//     int data;
+//     struct Node* next;
+//  };
+//  struct Node* circularLL(struct Node* head){
+//     struct Node* temp=head;
+//     while(temp->next!=NULL){
+//         temp=temp->next;
+//     }
+//     temp->next=head;
+//     return head;
+//  }
+//  void printLL(struct Node* ptr,int index){
+//     for(int i=0;i<index;i++){
+//         printf("%d\t",ptr->data);
+//         ptr=ptr->next;
+//     }
+   
+//  }
+//  int main(){
+//     struct Node* head=NULL,*temp=NULL,*newNode;
+//     int nodes;
+//     printf("ENTER THE NUMBER OF NODES:");
+//     scanf("%d",&nodes);
+//     for(int i=0;i<nodes;i++){
+//         newNode=(struct Node*)malloc(sizeof(struct Node));
+//         int value;
+//         printf("ENTER THE VALUE OF THE %d NODES:",i+1);
+//         scanf("%d",&value);
+//         newNode->data=value;
+//         newNode->next=NULL;
+//         if(head==NULL){
+//             head=newNode;
+//             temp=newNode;
+//         }else{
+//             temp->next=newNode;
+//             temp=newNode;
+//         }
+//     }
+//     int index;
+//     printf("ENTER THE INDEX VALUE WHERE YOU WANT TO PRINT THE LINKLIST:");
+//     scanf("%d",&index);
+//     head=circularLL(head);
+//     printLL(head,index);
+
+//  }
+
+
+//DOUBLY LINKLIST 
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node{
+    struct Node* prev;
     int data;
     struct Node* next;
- };
- struct Node* circularLL(struct Node* head){
-    struct Node* temp=head;
-    while(temp->next!=NULL){
-        temp=temp->next;
-    }
-    temp->next=head;
-    return head;
- }
- void printLL(struct Node* ptr,int index){
-    for(int i=0;i<index;i++){
+};
+struct Node* traverseForward(struct Node* ptr){
+    while(ptr!=NULL){
         printf("%d\t",ptr->data);
         ptr=ptr->next;
     }
-   
- }
- int main(){
+}
+struct Node* traverseBackword(struct Node* tail){
+    while(tail!=NULL){
+        printf("%d\t",tail->data);
+        tail=tail->prev;
+    }
+}
+int main(){
     struct Node* head=NULL,*temp=NULL,*newNode;
     int nodes;
     printf("ENTER THE NUMBER OF NODES:");
@@ -580,22 +631,21 @@
     for(int i=0;i<nodes;i++){
         newNode=(struct Node*)malloc(sizeof(struct Node));
         int value;
-        printf("ENTER THE VALUE OF THE %d NODES:",i+1);
+        printf("ENTER THE %d NODE VALUE:",i+1);
         scanf("%d",&value);
+        newNode->prev=NULL;
         newNode->data=value;
         newNode->next=NULL;
         if(head==NULL){
             head=newNode;
             temp=newNode;
         }else{
+            newNode->prev=temp;
             temp->next=newNode;
             temp=newNode;
         }
     }
-    int index;
-    printf("ENTER THE INDEX VALUE WHERE YOU WANT TO PRINT THE LINKLIST:");
-    scanf("%d",&index);
-    head=circularLL(head);
-    printLL(head,index);
-
- }
+    traverseForward(head);
+    printf("\n");
+    traverseBackword(temp);
+}
