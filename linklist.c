@@ -496,32 +496,83 @@
 //     return 0;
 // }
 
-#include <stdio.h>
-#include <stdlib.h>
+// #include <stdio.h>
+// #include <stdlib.h>
 
-struct Node{
+// struct Node{
+//     int data;
+//     struct Node* next;
+// };
+// struct Node* atEnd(struct Node* head,int nodes){
+//     struct Node* temp=head;
+//     struct Node* temp2=head->next;
+//     for(int i=1;i<nodes-1;i++){
+//         temp=temp->next;
+//         temp2=temp2->next;
+//        }
+//        temp->next=NULL;
+//        free(temp2);
+//        return head;
+
+// }
+// void printLL(struct Node* ptr){
+//     while(ptr!=NULL){
+//         printf("%d\t",ptr->data);
+//         ptr=ptr->next;
+//     }
+// }
+// int main(){
+//     struct Node* head=NULL,*temp=NULL,*newNode;
+//     int nodes;
+//     printf("ENTER THE NUMBER OF NODES:");
+//     scanf("%d",&nodes);
+//     for(int i=0;i<nodes;i++){
+//         newNode=(struct Node*)malloc(sizeof(struct Node));
+//         int value;
+//         printf("ENTER THE %d VALUE:",i+1);
+//         scanf("%d",&value);
+//         newNode->data=value;
+//         newNode->next=NULL;
+//         if(head==NULL){
+//             head=newNode;
+//             temp=newNode;
+//         }else{
+//             temp->next=newNode;
+//             temp=newNode;
+//         }
+//     }
+//     head=atEnd(head,nodes);
+        
+//     printLL(head);
+//     return 0;
+// }
+
+// SO CIRCULAR LINKLIST
+
+
+ #include <stdio.h>
+ #include <stdlib.h>
+
+ struct Node{
     int data;
     struct Node* next;
-};
-struct Node* atEnd(struct Node* head,int nodes){
+ };
+ struct Node* circularLL(struct Node* head){
     struct Node* temp=head;
-    struct Node* temp2=head->next;
-    for(int i=1;i<nodes-1;i++){
+    while(temp->next!=NULL){
         temp=temp->next;
-        temp2=temp2->next;
-       }
-       temp->next=NULL;
-       free(temp2);
-       return head;
-
-}
-void printLL(struct Node* ptr){
-    while(ptr!=NULL){
+    }
+    temp->next=head;
+    return head;
+ }
+ void printLL(struct Node* ptr,int index){
+    for(int i=0;i<index;i++){
         printf("%d\t",ptr->data);
         ptr=ptr->next;
     }
-}
-int main(){
+   
+ }
+ int main(){
     struct Node* head=NULL,*temp=NULL,*newNode;
     int nodes;
     printf("ENTER THE NUMBER OF NODES:");
@@ -529,7 +580,7 @@ int main(){
     for(int i=0;i<nodes;i++){
         newNode=(struct Node*)malloc(sizeof(struct Node));
         int value;
-        printf("ENTER THE %d VALUE:",i+1);
+        printf("ENTER THE VALUE OF THE %d NODES:",i+1);
         scanf("%d",&value);
         newNode->data=value;
         newNode->next=NULL;
@@ -541,8 +592,10 @@ int main(){
             temp=newNode;
         }
     }
-    head=atEnd(head,nodes);
-        
-    printLL(head);
-    return 0;
-}
+    int index;
+    printf("ENTER THE INDEX VALUE WHERE YOU WANT TO PRINT THE LINKLIST:");
+    scanf("%d",&index);
+    head=circularLL(head);
+    printLL(head,index);
+
+ }
